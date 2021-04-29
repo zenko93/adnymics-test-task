@@ -1,14 +1,17 @@
 <template>
   <div>
-    <h1>Conflicts</h1>
-    <table width="100%" border="1">
-      <tr>
-        <td>Time Period</td>
+    <div class="app-header">
+      <h1>Conflicts</h1>
+      <img src="../assets/images/Ambox_important_blue.svg" class="app-img" alt="!">
+    </div>
+    <table class="app-table">
+      <thead class="app-col">
+        <td class="app-row">Time Period</td>
         <td>Campains</td>
         <td>Conflicts</td>
-      </tr>
+      </thead>
       <tr v-for="{ period, name, conflict } in conflicts" :key="name">
-        <td>{{ period }}</td>
+        <td class="app-row">{{ period }}</td>
         <td>{{ name }}</td>
         <td>{{ conflict }}</td>
       </tr>
@@ -21,22 +24,13 @@ import CampainsStatus from "../../mockData.json";
 
 export default {
   name: "Conflicts",
-  props: {
-    msg: String,
-  },
   computed: {
     sameDate() {
-      const valueArr = CampainsStatus.data.map((item) => ({
-        startDate: item.start_date,
-        endDate: item.end_date,
-        id: item.id,
-      }));
-
       return CampainsStatus.data.filter((item) => {
-        return valueArr.some(
+        return CampainsStatus.data.some(
           (someItem) =>
-            someItem.startDate === item.start_date &&
-            someItem.endDate === item.end_date &&
+            someItem.start_date === item.start_date &&
+            someItem.end_date === item.end_date &&
             someItem.id !== item.id
         );
       });
@@ -68,8 +62,8 @@ export default {
           .join(" and ");
 
         const conflictText = conflictGender
-          ? `Gender: ${conflictGender} is assigned to two or more campaigns`
-          : `Customer Type: ${customerType} are assigned to two or more campaings`;
+          ? `Gender: ${conflictGender} ${this.choosePreposition(conflictGender)} assigned to two or more campaigns`
+          : `Customer Type: ${customerType} ${this.choosePreposition(customerType)} assigned to two or more campaings`;
 
         acc.push({
           period: `${item.start_date} - ${item.end_date}`,
@@ -81,7 +75,44 @@ export default {
       }, []);
     },
   },
+  methods: {
+    choosePreposition(conflict) {
+      return `${conflict.includes("and") ? "are" : "is"}`;
+    },
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+table {
+  border-collapse: collapse;
+  padding: 4px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+}
+
+.app-img {
+  width: 50px;
+  height: 50px;
+}
+
+h1 {
+  color: blue;
+  padding-right: 12px;
+}
+
+thead {
+  border-bottom: 1px solid black;
+}
+
+td {
+  padding: 16px 8px;
+}
+
+tr:nth-child(2n + 1) {
+  background-color: gray;
+}
+</style>

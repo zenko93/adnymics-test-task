@@ -13,8 +13,8 @@
     {
       "id":2,
       "name": "Summer_2020",
-      "start_date": "2020.06.04",
-      "end_date": "2020.08.31",
+      "start_date": "2021.01.01",
+      "end_date": "2021.03.31",
       "targeting": {
         "gender": ["male", "female"],
         "customer_type": ["new", "old"]
@@ -23,8 +23,8 @@
     {
       "id":3,
       "name": "Summer-Sale_2020",
-      "start_date": "2020.08.01",
-      "end_date": "2020.08.31",
+      "start_date": "2021.01.01",
+      "end_date": "2021.03.31",
       "targeting": {
         "gender": ["male"],
         "customer_type": ["new", "old"]
@@ -33,8 +33,8 @@
     {
       "id":4,
       "name": "Autumn_2020",
-      "start_date": "2020.09.01",
-      "end_date": "2020.12.31",
+      "start_date": "2021.01.01",
+      "end_date": "2021.03.31",
       "targeting": {
         "gender": ["female"],
         "customer_type": ["new", "old"]
